@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectmanager/login/Staff_Login.dart';
 import 'login/Login.dart';
-import 'login/Stud_Signup.dart';
 import 'login/Staff_Login.dart';
 import 'login/Staff_Signup.dart';
-import 'project/Projects_List.dart';
 
 void main() {
   runApp(MyApp());

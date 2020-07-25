@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:projectmanager/login/Staff_Login.dart';
 import 'package:projectmanager/login/Stud_Login.dart';
 import 'package:projectmanager/project/Projects_List.dart';
+import 'package:projectmanager/project/Projects_List1.dart';
+
+import '../project/Projects_List.dart';
 
 class Login extends StatefulWidget {
 
@@ -137,7 +140,7 @@ class _LoginState extends State<Login> {
                           child: RaisedButton(
                               color: Colors.black12,
                               onPressed: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ProjectsList()));
+                                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ProjectList()));
                               },
                               child: Text('Previous Projects',
                                   style: TextStyle(

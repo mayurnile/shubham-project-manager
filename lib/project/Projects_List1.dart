@@ -1,55 +1,49 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:projectmanager/Widgets/EntryItems.dart';
+
 import 'User.dart';
+// import 'package:projectmanager/project/User.dart';
 
-class ProjectList extends StatefulWidget {
+class ProjectsList extends StatefulWidget {
+  static const routeName3 = '/project-list';
 
-  static const menuItems= <String>[
+  static const menuItems1 = <String>[
     "Second Year",
     "Third Year",
     "Fourth Year",
   ];
 
   @override
-  _ProjectListState createState() => _ProjectListState();
+  _ProjectsListState createState() => _ProjectsListState();
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(IterableProperty<String>('menuItems1', menuItems1));
+  }
 }
 
-class _ProjectListState extends State<ProjectList> {
+class _ProjectsListState extends State<ProjectsList> {
+  String _btnSelectedVal;
+  String _btnSelectedVal1;
+
+  List<User> _user = [];
 
   String value="";
-
-  final _formKey = GlobalKey<FormState>();
-
-    List<User> _user = [];
 
   bool disablebutton = true;
   bool disableSecondDropdown = true;
 
-  final TextEditingController semester = new TextEditingController();
-  final TextEditingController groupmem1 = new TextEditingController();
-  final TextEditingController groupmem2 = new TextEditingController();
-  final TextEditingController groupmem3 = new TextEditingController();
-  final TextEditingController projtopic = new TextEditingController();
-
-  
-  final dbRef = FirebaseDatabase.instance.reference().child("Project");
-    
-  Function addP;
-
-  double screenHeight,screenWidth;
-
-  String _btnSelectedVal;
-  String _btnSelectedVal1;
-
-  List<DropdownMenuItem<String>> _dropDownList = ProjectList.menuItems
-      .map((String value)=>DropdownMenuItem<String>(
-    value: value,
-    child: Text(value),
-  ),).toList();
-
-
-  List<DropdownMenuItem<String>> _dropDownList1 = List();
+  List<DropdownMenuItem<String>> _dropDownList = ProjectsList.menuItems1
+      .map(
+        (String value) => DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        ),
+      )
+      .toList();
+List<DropdownMenuItem<String>> _dropDownList1 = List();
 
   final se ={
     "1":"Sem 3",
@@ -112,43 +106,51 @@ class _ProjectListState extends State<ProjectList> {
 
   void secondselected(_value){
     setState(() {
-      
       _btnSelectedVal1=_value;
     });
   }
 
+  final fb = FirebaseDatabase.instance;
 
-  // bool _validate1=false, _validate2 =false,_validate3=false,_validate4 =false;
+  get menuItems1 => null;
+
+  double screenHeight, screenWidth;
 
   @override
   Widget build(BuildContext context) {
+    // final dbRef = FirebaseDatabase.instance.reference().child("Project");
+
+    // final show = dbRef.setPriority(semester).then((value) => null);
 
     screenHeight = MediaQuery.of(context).size.height;
     screenWidth = MediaQuery.of(context).size.width;
 
-    return Form(
-      key: _formKey,
+    return SafeArea(
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-        Container(
-        color: Colors.black12,
-          child: Container(
-            margin:EdgeInsets.fromLTRB(20,55, 15 , 25),
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(125),
+            Container(
+              color: Colors.black12,
+              child: Container(
+                margin: EdgeInsets.fromLTRB(20, 35, 15, 15),
+                decoration: BoxDecoration(
+                  color: Colors.lightGreen,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(125),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+            SizedBox(height: 40),
+
+            // const SizedBox(height: 40),
             Container(
               child: ListView(
                 itemExtent: 65,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.fromLTRB(screenWidth / 10, 10, screenWidth / 10, 0),
+                    margin: EdgeInsets.fromLTRB(
+                        screenWidth / 10, 45, screenWidth / 10, 0),
                     child: Text(
                       "Previous Year",
                       style: TextStyle(
@@ -208,14 +210,14 @@ class _ProjectListState extends State<ProjectList> {
               ),
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(10, screenHeight / 3.6, 10, 0),
+              margin: EdgeInsets.fromLTRB(10, screenHeight / 4, 10, 0),
               decoration: BoxDecoration(
                 color: Colors.blueGrey.withAlpha(120),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: ui(context),
             )
-        ] ,
+          ],
         ),
       ),
     );
@@ -275,5 +277,4 @@ class _ProjectListState extends State<ProjectList> {
       },
     );
   }
-
 }

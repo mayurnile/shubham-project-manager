@@ -1,3 +1,4 @@
+import 'package:expansion_card/expansion_card.dart';
 import 'package:flutter/material.dart';
 import 'package:projectmanager/Widgets/authentication.dart';
 
@@ -51,8 +52,48 @@ class _StaffACState extends State<StaffAC> {
                 ),
               ),
             ),
-            Container(
-              child: Text("hw"),
+            Column(
+              children: <Widget>[
+                  Container(
+                  child: ExpansionCard(
+                    title: Text("2nd Year"),
+                      backgroundColor: Colors.black38,
+                      
+                      children: <Widget>[
+                        Text("This Year"),
+                        Text("Previous Year"),
+                      ],
+                  ),
+                ),
+                Container(
+                child: ExpansionCard(
+                  title: Text("3rd Year"),
+                    backgroundColor: Colors.black38,
+                    
+                    children: <Widget>[
+                      Text("This Year"),
+                      Text("Previous Year"),
+                    ],
+                ),
+              ),
+
+                Container(
+                decoration: BoxDecoration(                  
+                  borderRadius: BorderRadius.circular(15),
+                  color: Colors.black45
+                ),
+                child: ExpansionCard(
+                  
+                  title: Text("4th Year"),
+                    backgroundColor: Colors.black38,
+                    
+                    children: <Widget>[
+                      Text("This Year"),
+                      Text("Previous Year"),
+                    ],
+                ),
+              ),
+              ],
             )
             
           ],

@@ -9,13 +9,6 @@ class ProjectSubmission extends StatefulWidget {
     "Third Year",
     "Fourth Year",
   ];
-  static const menuItems1= <String>[
-    "Sem 3",
-    "Sem 4",
-    "Sem 5",
-    "Sem 6",
-    "Sem 7",
-  ];
 
   @override
   _ProjectSubmissionState createState() => _ProjectSubmissionState();
